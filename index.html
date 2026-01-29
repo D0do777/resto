@@ -1,147 +1,154 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Restaurant</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Restaurant</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            font-family: Arial, sans-serif;
-            background: #ececec;
-            overflow: hidden;
-        }
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: #ececec;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
 
-        .slider {
-            display: flex;
-            width: 300%;
-            height: 100%;
-            transition: transform 0.5s ease-in-out;
-        }
+.wrapper {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
 
-        .slide {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+.slider {
+    display: flex;
+    height: 100%;
+    transition: transform 0.5s ease;
+}
 
-        .card {
-            background: white;
-            width: 85%;
-            height: 80%;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-        }
+.slide {
+    min-width: 100vw;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-        .card a {
-            text-decoration: none;
-            background: #2c7be5;
-            color: white;
-            padding: 20px 30px;
-            border-radius: 12px;
-            font-size: 20px;
-        }
+.card {
+    background: white;
+    width: 85%;
+    height: 80%;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
 
-        .arrows {
-            position: fixed;
-            bottom: 30px;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            padding: 0 30px;
-            box-sizing: border-box;
-        }
+.card h1 {
+    margin-bottom: 30px;
+}
 
-        .arrow {
-            font-size: 30px;
-            background: white;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-            cursor: pointer;
-            user-select: none;
-        }
-    </style>
+.card a {
+    text-decoration: none;
+    background: #2c7be5;
+    color: white;
+    padding: 20px 30px;
+    border-radius: 12px;
+    font-size: 20px;
+}
+
+.arrows {
+    position: fixed;
+    bottom: 25px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 30px;
+}
+
+.arrow {
+    width: 50px;
+    height: 50px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+    cursor: pointer;
+    user-select: none;
+}
+</style>
 </head>
 
 <body>
 
-<div class="slider" id="slider">
-    <div class="slide">
-        <div class="card">
-            <h1>⭐ Noter le restaurant</h1>
-            <a href="https://TON-LIEN-GOOGLE-AVIS" target="_blank">Laisser un avis</a>
-        </div>
-    </div>
+<div class="wrapper">
+    <div class="slider" id="slider">
 
-    <div class="slide">
-        <div class="card">
-            <h1>🇬🇧 Menu en anglais</h1>
-            <a href="menu-en.html" target="_blank">Voir le menu</a>
+        <div class="slide">
+            <div class="card">
+                <h1>⭐ Noter le restaurant</h1>
+                <a href="https://TON-LIEN-GOOGLE-AVIS" target="_blank">
+                    Laisser un avis
+                </a>
+            </div>
         </div>
-    </div>
 
-    <div class="slide">
-        <div class="card">
-            <h1>🇪🇸 Menú en español</h1>
-            <a href="menu-es.html" target="_blank">Ver el menú</a>
+        <div class="slide">
+            <div class="card">
+                <h1>🇬🇧 Menu en anglais</h1>
+                <a href="menu-en.html" target="_blank">
+                    Voir le menu
+                </a>
+            </div>
         </div>
+
+        <div class="slide">
+            <div class="card">
+                <h1>🇪🇸 Menú en español</h1>
+                <a href="menu-es.html" target="_blank">
+                    Ver el menú
+                </a>
+            </div>
+        </div>
+
     </div>
 </div>
 
 <div class="arrows">
-    <div class="arrow" onclick="prev()">⬅️</div>
-    <div class="arrow" onclick="next()">➡️</div>
+    <div class="arrow" id="prev">⬅️</div>
+    <div class="arrow" id="next">➡️</div>
 </div>
 
 <script>
-    let index = 0;
-    const totalSlides = 3;
-    const slider = document.getElementById("slider");
+let index = 0;
+const slider = document.getElementById("slider");
+const slides = document.querySelectorAll(".slide");
+const maxIndex = slides.length - 1;
 
-    function updateSlider() {
-        // S'assurer que l'index reste dans les bornes
-        if (index < 0) index = 0;
-        if (index >= totalSlides) index = totalSlides - 1;
-
-        // Appliquer la transformation
-        slider.style.transform = `translateX(-${index * 100}%)`;
+document.getElementById("next").onclick = () => {
+    if (index < maxIndex) {
+        index++;
+        slider.style.transform = `translateX(-${index * 100}vw)`;
     }
+};
 
-    function next() {
-        if (index < totalSlides - 1) {
-            index++;
-            updateSlider();
-        }
+document.getElementById("prev").onclick = () => {
+    if (index > 0) {
+        index--;
+        slider.style.transform = `translateX(-${index * 100}vw)`;
     }
-
-    function prev() {
-        if (index > 0) {
-            index--;
-            updateSlider();
-        }
-    }
-
-    // Initialiser l'affichage
-    updateSlider();
+};
 </script>
 
 </body>
 </html>
-
 
