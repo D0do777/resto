@@ -1,91 +1,92 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<title>Restaurant</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Restaurant</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-<style>
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    background: #ececec;
-    font-family: Arial, sans-serif;
-    overflow: hidden;
-}
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background: #ececec;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
 
-.wrapper {
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-}
+        .wrapper {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: #ececec;
+        }
 
-.slider {
-    display: flex;
-    height: 100%;
-    transition: transform 0.5s ease;
-}
+        .slider {
+            display: flex;
+            height: 100%;
+            width: 300%;
+            transition: transform 0.5s ease;
+        }
 
-.slide {
-    min-width: 100vw;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+        .slide {
+            min-width: 100vw;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-.card {
-    background: white;
-    width: 85%;
-    height: 80%;
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
+        .card {
+            background: white;
+            width: 90%;
+            height: 90%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
 
-.card h1 {
-    margin-bottom: 30px;
-}
+        .card a {
+            text-decoration: none;
+            background: #2c7be5;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 12px;
+            font-size: 18px;
+        }
 
-.card a {
-    text-decoration: none;
-    background: #2c7be5;
-    color: white;
-    padding: 20px 30px;
-    border-radius: 12px;
-    font-size: 20px;
-}
+        .arrows {
+            position: fixed;
+            bottom: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
 
-.arrows {
-    position: fixed;
-    bottom: 25px;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 30px;
-}
-
-.arrow {
-    width: 50px;
-    height: 50px;
-    background: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.25);
-    cursor: pointer;
-    user-select: none;
-}
-</style>
+        .arrow {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            cursor: pointer;
+            user-select: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -96,27 +97,21 @@ html, body {
         <div class="slide">
             <div class="card">
                 <h1>⭐ Noter le restaurant</h1>
-                <a href="data:image/jpeg;base64,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" target="_blank">
-                    Laisser un avis
-                </a>
+                <a href="https://TON-LIEN-GOOGLE-AVIS" target="_blank">Laisser un avis</a>
             </div>
         </div>
 
         <div class="slide">
             <div class="card">
                 <h1>🇬🇧 Menu en anglais</h1>
-                <a href="menu-en.html" target="_blank">
-                    Voir le menu
-                </a>
+                <a href="menu-en.html" target="_blank">Voir le menu</a>
             </div>
         </div>
 
         <div class="slide">
             <div class="card">
                 <h1>🇪🇸 Menú en español</h1>
-                <a href="menu-es.html" target="_blank">
-                    Ver el menú
-                </a>
+                <a href="menu-es.html" target="_blank">Ver el menú</a>
             </div>
         </div>
 
@@ -125,30 +120,4 @@ html, body {
 
 <div class="arrows">
     <div class="arrow" id="prev">⬅️</div>
-    <div class="arrow" id="next">➡️</div>
-</div>
-
-<script>
-let index = 0;
-const slider = document.getElementById("slider");
-const slides = document.querySelectorAll(".slide");
-const maxIndex = slides.length - 1;
-
-document.getElementById("next").onclick = () => {
-    if (index < maxIndex) {
-        index++;
-        slider.style.transform = `translateX(-${index * 100}vw)`;
-    }
-};
-
-document.getElementById("prev").onclick = () => {
-    if (index > 0) {
-        index--;
-        slider.style.transform = `translateX(-${index * 100}vw)`;
-    }
-};
-</script>
-
-</body>
-</html>
-
+    <
