@@ -85,7 +85,7 @@
     <div class="slide">
         <div class="card">
             <h1>⭐ Noter le restaurant</h1>
-            <a href="https://evasion-online.com/images/2016/03/f34f732fccc0b79a3ec623fd747f2f66-720x525.jpg" target="_blank">Laisser un avis</a>
+            <a href="https://TON-LIEN-GOOGLE-AVIS" target="_blank">Laisser un avis</a>
         </div>
     </div>
 
@@ -115,8 +115,11 @@
     const slider = document.getElementById("slider");
 
     function updateSlider() {
+        // S'assurer que l'index reste dans les bornes
         if (index < 0) index = 0;
         if (index >= totalSlides) index = totalSlides - 1;
+
+        // Appliquer la transformation
         slider.style.transform = `translateX(-${index * 100}%)`;
     }
 
@@ -127,13 +130,5 @@
         }
     }
 
-    function prev() {
-        if (index > 0) {
-            index--;
-            updateSlider();
-        }
-    }
-</script>
+    function
 
-</body>
-</html>
